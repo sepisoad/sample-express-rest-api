@@ -1,0 +1,71 @@
+openapi: 3.0.1
+info:
+  title: Sepehr Aryani Sample REST API Documentration
+  description: >-
+    This is a sample REST API server. This document shows how to make api call
+    to our RESTful server
+  contact:
+    email: sepehr.aryani@gmail.com
+  version: 0.0.1
+servers:
+  - url: 'http://localhost:3000/api/v1'
+paths:
+  /humans:
+    get:
+      tags:
+        - humans
+      summary: Retrieves all humans data
+      description: 'Retrieves all humans data, shows only their name and age'
+      operationId: getAllHumans
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Human'
+  '/humans/{name}/pets':
+    get:
+      tags:
+        - pets
+      summary: Finds a human pets
+      description: >-
+        Retrieves a list of all pets associated with a human, if human name is
+        Jane and Jane's age is more than 30 an empty list is returned
+      operationId: getHumanPets
+      parameters:
+        - name: name
+          in: path
+          description: human name to look for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+          
+components:
+  schemas:
+    Human:
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: integer
+          format: int32
+    Pet:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
