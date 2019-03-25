@@ -4,6 +4,8 @@ all source files reside in `src` folder
 
 all tests files reside in `tests` folder
 
+all document files reside in `doc` folder
+
 # Prerequisite 
 you need to install these tools globally in order to be able to run some tasks and scripts:
 
@@ -73,3 +75,8 @@ in order to run test cases run:
 and last but no least, to test code coverage run:
 
 `yarn coverage`
+
+
+# API Documentation
+
+in order to see REST API documentation you can go to `doc` folder and either open `doc.html` which is a pre-compiled and self contained html documentation or use `redoc-cli` tool and run `api.yml` specification file.
