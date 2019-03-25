@@ -18,5 +18,5 @@
 [x] unit test (chai), consider requirements JACK/JANE,PETS,AGE,...
 [x] test runner (mocha)
 [x] test coveraage (istanbul)
-[ ] documents
+[x] rest api documents
 [ ] class diagram
