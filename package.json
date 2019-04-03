@@ -23,7 +23,9 @@
     "debug": "nodemon --inspect=localhost:9229 --exec babel-node src/index.js",
     "lint": "eslint src",
     "test": "mocha --require @babel/register './tests/**.js'",
-    "coverage": "nyc mocha --require @babel/register './tests/**.js'"
+    "coverage": "nyc mocha --require @babel/register './tests/**.js'",
+    "jsdoc": "jsdoc -r -d doc/jsdoc src/ --readme README.md",
+    "apidoc": "cd doc/api/ && redoc-cli bundle api.yml && mv redoc-static.html index.html &&  cd ../.."
   },
   "dependencies": {
     "dotenv": "^7.0.0",
