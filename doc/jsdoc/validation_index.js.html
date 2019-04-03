@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: api/index.js</title>
+    <title>JSDoc: Source: validation/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: api/index.js</h1>
+    <h1 class="page-title">Source: validation/index.js</h1>
 
     
 
@@ -27,22 +27,51 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * API sub-route module
- * @module app/api
+ * Validation module, contains data tyope schemas
+ * @module Validations
  */
 
-import { Router } from "express";
-import v1 from "./v1";
-
-// This is 'api' sub router
-const api = new Router();
-
-api.use("/v1", v1);
+import joi from "joi";
 
 /**
- * This is our '/api' sub router
+ * This object is used to validate getHumanPets request params
+ * @constant
+ * @type {object}
  */
-module.exports = api;
+const getHumanPetsRequest = {
+  "params": {
+    "name": joi.string().required()
+  }
+};
+
+/**
+ * This object is used to validate humans array
+ * retrieved from database
+ * @constant
+ * @type {object}
+ */
+const humans = joi.array().items(joi.object({
+  "name": joi.string(),
+  "age": joi.number()
+}));
+
+/**
+ * This object is used to validate humans' pets array
+ * retrieved from database
+ * @constant
+ * @type {object}
+ */
+const pets = joi.array().items(joi.object({
+  "name": joi.string(),
+  "type": joi.string()
+}));
+
+module.exports = {
+  getHumanPetsRequest,
+  humans,
+  pets
+};
+
 </code></pre>
         </article>
     </section>

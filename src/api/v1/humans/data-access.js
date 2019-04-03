@@ -21,6 +21,10 @@ const getAllHumans = (db) => db;
 const getHumanPets = (db, humanName) => {
   const human = db.find((row) => row.name === humanName);
 
+  if (!human) {
+    throw Error("no record was found");
+  }
+
   return human.pets;
 };
 

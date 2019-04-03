@@ -1,7 +1,8 @@
 module.exports = [
   {
     "name": "Jack",
-    "age": 27,
+    "age": 33,
+    "accidents": 2,
     "pets": [
       {
         "name": "aaa",
@@ -22,6 +23,7 @@ module.exports = [
   {
     "name": "Jane",
     "age": 31,
+    "accidents": 0,
     "pets": [
       {
         "name": "ccc",

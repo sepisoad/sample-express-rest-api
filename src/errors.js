@@ -40,3 +40,18 @@ export const centralErrorHandler = async (err) => {
   sendEmailAlert(err);
   sendSlackAlert(err);
 };
+
+/**
+ * Generates error object
+ * @param {Number} code error code.
+ * @param {String} msg error message.
+ * @returns {null}.
+ */
+
+export const genHTTPStatusError = (code, msg) => {
+  const err = new Error(msg);
+
+  err.code = code;
+  throw err;
+
+};

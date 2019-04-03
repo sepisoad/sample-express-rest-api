@@ -3,7 +3,9 @@
  * @module app/api/v1/humans-business
  */
 
+import joi from "joi";
 import DA from "./data-access";
+import validation from "../../../validation";
 
 /**
  * This value refers to Jane's Max age after which we are not allowed to
@@ -36,6 +38,12 @@ const getAllHumans = (db) => {
     "age": row.age
   }));
 
+  const res = joi.validate(data, validation.humans);
+
+  if (res.error !== null) {
+    throw res.error;
+  }
+
   return data;
 };
 
@@ -48,13 +56,19 @@ const getAllHumans = (db) => {
  */
 const getHumanPets = (db, name) => {
   const human = db.find((row) => row.name === name);
+  const data = DA.getHumanPets(db, name);
+  const res = joi.validate(data, validation.pets);
+
+  if (res.error !== null) {
+    throw res.error;
+  }
 
   if (name === "Jane" && human.age > JANE_MAX_AGE) {
     // Based on requirement documentation, "ZERO result" is returned back
     return ZERO_RESULT;
   }
 
-  return DA.getHumanPets(db, name);
+  return data;
 };
 
 module.exports = {

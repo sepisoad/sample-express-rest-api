@@ -1,0 +1,22 @@
+graph LR
+USER((USER)) -->|STEP #1 calls /api/v1/humans| API(API sub-router)
+
+HUMANS -->|STEP #8 returns the result back to user| USER
+subgraph NODE.JS HTTP Server
+
+subgraph HTTP Routers
+API -->|STEP #2 strips `api` from route| V1(V1 sub-router)
+V1 -->|STEP #3 strips `v1` from route| HUMANS(sub-router)
+end
+
+subgraph Business Layer
+HUMANS -->|STEP #4 asks business layer for all humans| BUSINESS
+BUSINESS -->|STEP #7 removes unnecessary fields and returns| HUMANS
+end
+
+subgraph DataBase Access Layer
+BUSINESS -->|STEP #5 asks DB for all humans raw data| DB
+DB -->|STEP #6 returns all humans raw data| BUSINESS
+end
+
+end

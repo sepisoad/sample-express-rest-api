@@ -5,10 +5,15 @@
 
 import logger from "winston";
 import express from "express";
+import validate from "express-validation";
+import statusCode from "http-status-codes";
 import {
   getAllHumans,
   getHumanPets
 } from "./business";
+import { genHTTPStatusError } from "../../../errors";
+import validation from "../../../validation";
+
 
 const humans = new express.Router();
 
@@ -19,7 +24,7 @@ const humans = new express.Router();
  * @memberof module:app/api/v1/humans
  * @inner
  */
-humans.get("/", (req, res, next) => {
+humans.get("/", (req, res) => {
   logger.debug(req.baseUrl);
 
   try {
@@ -28,8 +33,10 @@ humans.get("/", (req, res, next) => {
 
     res.json(data);
   } catch (err) {
-    // eslint-disable-next-line callback-return
-    next(err);
+    genHTTPStatusError(
+      statusCode.INTERNAL_SERVER_ERROR,
+      err.message
+    );
   }
 });
 
@@ -41,21 +48,33 @@ humans.get("/", (req, res, next) => {
  * @inner
  * @param {string} name - human's name
  */
-humans.get("/:name/pets", (req, res, next) => {
-  logger.debug(req.baseUrl);
+humans.get(
+  "/:name/pets",
+  validate(validation.getHumanPetsRequest),
+  (req, res) => {
+    logger.debug(req.baseUrl);
 
-  try {
-    const { name } = req.params;
-    const db = req.app.get("db");
-    const data = getHumanPets(db, name);
+    try {
+      const { name } = req.params;
+      const db = req.app.get("db");
+      const data = getHumanPets(db, name);
 
-    res.json(data);
-  } catch (err) {
-    // eslint-disable-next-line callback-return
-    next(err);
+      res.json(data);
+    } catch (err) {
+      if (err.message === "no record was found") {
+        genHTTPStatusError(
+          statusCode.NOT_FOUND,
+          "human name was not found in our database"
+        );
+      } else {
+        genHTTPStatusError(
+          statusCode.INTERNAL_SERVER_ERROR,
+          err.message
+        );
+      }
+    }
   }
-
-});
+);
 
 /**
  * This is humans sub router

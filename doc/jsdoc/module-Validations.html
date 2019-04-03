@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: app/api/v1/humans</title>
+    <title>JSDoc: Module: Validations</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: app/api/v1/humans</h1>
+    <h1 class="page-title">Module: Validations</h1>
 
     
 
@@ -31,8 +31,6 @@
         
             
         
-            
-        
     
 </header>
 
@@ -40,94 +38,8 @@
     <div class="container-overview">
     
         
-            <div class="description">Humans sub-route module</div>
+            <div class="description">Validation module, contains data tyope schemas</div>
         
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="module:app/api/v1/humans"><span class="type-signature">(constant) </span>module:app/api/v1/humans<span class="type-signature"> :router</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    This is humans sub router
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_v1_humans_index.js.html">api/v1/humans/index.js</a>, <a href="api_v1_humans_index.js.html#line85">line 85</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         
             
@@ -175,7 +87,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_v1_humans_index.js.html">api/v1/humans/index.js</a>, <a href="api_v1_humans_index.js.html#line1">line 1</a>
+        <a href="validation_index.js.html">validation/index.js</a>, <a href="validation_index.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -220,34 +132,30 @@
     
 
     
-
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
 
         
             
+<h4 class="name" id="~getHumanPetsRequest"><span class="type-signature">(inner, constant) </span>getHumanPetsRequest<span class="type-signature"> :object</span></h4>
 
-    
-
-    
-    <h4 class="name" id="~ROUTE%7BGET%7D/api/v1/humans/"><span class="type-signature">(inner) </span>ROUTE {GET} /api/v1/humans/<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
 
 
 
 <div class="description">
-    Route that returns all humans
+    This object is used to validate getHumanPets request params
 </div>
 
 
 
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
 
 
-
-
-
+        </li>
+    </ul>
 
 
 
@@ -282,7 +190,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_v1_humans_index.js.html">api/v1/humans/index.js</a>, <a href="api_v1_humans_index.js.html#line20">line 20</a>
+        <a href="validation_index.js.html">validation/index.js</a>, <a href="validation_index.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -298,91 +206,29 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         
             
+<h4 class="name" id="~humans"><span class="type-signature">(inner, constant) </span>humans<span class="type-signature"> :object</span></h4>
 
-    
-
-    
-    <h4 class="name" id="~ROUTE%7BGET%7D/api/v1/humans/:name/pets"><span class="type-signature">(inner) </span>ROUTE {GET} /api/v1/humans/:name/pets<span class="signature">(name)</span><span class="type-signature"></span></h4>
-    
-
-    
 
 
 
 <div class="description">
-    Route that returns all humans pets
+    This object is used to validate humans array
+retrieved from database
 </div>
 
 
 
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
+    <h5>Type:</h5>
+    <ul>
+        <li>
             
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
+<span class="param-type">object</span>
 
 
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">human's name</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
+        </li>
+    </ul>
 
 
 
@@ -417,7 +263,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="api_v1_humans_index.js.html">api/v1/humans/index.js</a>, <a href="api_v1_humans_index.js.html#line43">line 43</a>
+        <a href="validation_index.js.html">validation/index.js</a>, <a href="validation_index.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -433,12 +279,73 @@
 
 
 
+        
+            
+<h4 class="name" id="~pets"><span class="type-signature">(inner, constant) </span>pets<span class="type-signature"> :object</span></h4>
+
+
+
+
+<div class="description">
+    This object is used to validate humans' pets array
+retrieved from database
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
 
 
 
 
 
+<dl class="details">
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="validation_index.js.html">validation/index.js</a>, <a href="validation_index.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
 
 
 
@@ -446,6 +353,8 @@
 
 
         
+    
+
     
 
     

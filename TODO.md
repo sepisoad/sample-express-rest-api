@@ -19,4 +19,5 @@
 [x] test runner (mocha)
 [x] test coverage (istanbul)
 [x] rest api documents
-[ ] class diagram
+[x] validation
+[x] class diagram

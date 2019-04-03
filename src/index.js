@@ -6,6 +6,7 @@
 /* eslint-disable max-lines-per-function */
 import dotenv from "dotenv";
 import express from "express";
+import statusCode from "http-status-codes";
 import rateLimit from "express-rate-limit";
 import winston from "winston";
 import api from "./api";
@@ -45,33 +46,6 @@ const main = () => {
   app.use("/api", api);
 
   /**
-   * This custom middleware will capture all non-valid requests
-   * and then return a custom 404 error message to client
-   */
-  app.use((req, res, next) => {
-    res.
-      status("404").
-      type("text").
-      send("Error: the resource you are looking for does not exist");
-    next(req, res);
-  });
-
-  /**
-   * This custom middleware will capture all errors and exceptions
-   * and then return a custom 500 error message to client
-   */
-  // eslint-disable-next-line max-params
-  app.use((err, req, res, next) => {
-    logger.error(err.message);
-    centralErrorHandler(err);
-    res.
-      status("500").
-      type("text").
-      send("Opps, there is an internal server error, please report!");
-    next(req, res);
-  });
-
-  /**
    * This middleware apply rate limitings to express and can help
    * on DOS/DDOS attacks.
    */
@@ -86,6 +60,41 @@ const main = () => {
   });
 
   app.use(limiter);
+
+  /**
+   * This custom middleware will capture all non-valid requests
+   * and then return a custom 404 error message to client
+   */
+  app.use((req, res, next) => {
+    res.
+      status(statusCode.NOT_FOUND).
+      type("text").
+      send("the resource you are looking for does not exist");
+    next(req, res);
+  });
+
+  /**
+   * This custom middleware will capture all errors and exceptions
+   * and then return a custom 500 error message to client
+   */
+  // eslint-disable-next-line max-params
+  app.use((err, req, res, next) => {
+    if (err.code === statusCode.NOT_FOUND) {
+      res.
+        status(statusCode.NOT_FOUND).
+        type("text").
+        send(err.message);
+    } else if (err.code === statusCode.INTERNAL_SERVER_ERROR) {
+      res.
+        status(statusCode.INTERNAL_SERVER_ERROR).
+        type("text").
+        send(err.message);
+    }
+
+    logger.error(err.message);
+    centralErrorHandler(err);
+    next(req, res);
+  });
 
   // This will start our server and binds it to our ${PORT} number
   app.listen(PORT, () => {
