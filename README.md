@@ -5,6 +5,12 @@ all source files reside in `src` folder
 all tests files reside in `tests` folder
 
 all document files reside in `doc` folder
+  - for rest api documentations open `docs/api/index.html` file
+  - for source code documentations open `docs/jsdoc/index.html` file
+
+# Diagram
+
+![](doc/diagrams/01.svg)
 
 # Prerequisite 
 you need to install these tools globally in order to be able to run some tasks and scripts:
@@ -14,6 +20,8 @@ you need to install these tools globally in order to be able to run some tasks a
 `npm install -g mocha`
 
 `npm install -g eslint`
+
+`npm -g install jsdoc`
 
 `npm install -g nodemon` (optional, for debugging)
 
@@ -28,7 +36,6 @@ you need to install these tools globally in order to be able to run some tasks a
 `babel`: converting ES6 code to standard JS
 
 `chai`: test assertion
-
 
 `mocha`: test framework
 
@@ -75,6 +82,14 @@ in order to run test cases run:
 and last but no least, to test code coverage run:
 
 `yarn coverage`
+
+to generate documentation from source code run:
+
+`yarn jsdoc`
+
+to generate api documentation from spec file which is in `doc/api/api.yaml` run:
+
+`yarn apidoc`
 
 
 # API Documentation
