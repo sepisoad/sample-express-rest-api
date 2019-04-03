@@ -1,4 +1,9 @@
-/*
+/**
+ * Errors root module
+ * @module errors
+ */
+
+/**
  * This function sends an email alert message
  * @param {Object} err Error object.
  * @returns {null} nothing.
@@ -11,7 +16,7 @@ const sendEmailAlert = async (err) => {
   _ = err;
 };
 
-/*
+/**
  * This function sends a slack alert message
  * @param {Object} err Error object.
  * @returns {null} nothing.
@@ -25,7 +30,7 @@ const sendSlackAlert = async (err) => {
 };
 
 
-/*
+/**
  * This function is called whenever there is a error
  * @param {Object} err Error object.
  * @returns {null} nothing.

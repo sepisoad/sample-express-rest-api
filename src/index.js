@@ -1,3 +1,8 @@
+/**
+ * App entry root module
+ * @module app
+ */
+
 /* eslint-disable max-lines-per-function */
 import dotenv from "dotenv";
 import express from "express";
@@ -9,12 +14,13 @@ import {
   centralErrorHandler
 } from "./errors";
 
-/*
+/**
  * This is our api server program entry function
  */
 // eslint-disable-next-line max-statements
 const main = () => {
-  // Loads environment variables from .env file if exists
+
+  /** Loads environment variables from .env file if exists */
   dotenv.config();
 
   const logger = winston.createLogger({
@@ -28,6 +34,7 @@ const main = () => {
     "transports": [new winston.transports.Console()]
   });
 
+  // PORT env is used to define api server listening port
   const PORT = process.env.PORT || "3000";
   const app = express();
 
@@ -37,7 +44,7 @@ const main = () => {
   // Uses '/api' sub router
   app.use("/api", api);
 
-  /*
+  /**
    * This custom middleware will capture all non-valid requests
    * and then return a custom 404 error message to client
    */
@@ -49,8 +56,8 @@ const main = () => {
     next(req, res);
   });
 
-  /*
-   * This custom middleware will capture all erros and exceprion
+  /**
+   * This custom middleware will capture all errors and exceptions
    * and then return a custom 500 error message to client
    */
   // eslint-disable-next-line max-params
@@ -64,8 +71,8 @@ const main = () => {
     next(req, res);
   });
 
-  /*
-   * This middleware apply rate limitting to express and can help
+  /**
+   * This middleware apply rate limitings to express and can help
    * on DOS/DDOS attacks.
    */
   // eslint-disable-next-line no-magic-numbers

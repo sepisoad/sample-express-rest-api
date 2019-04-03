@@ -1,3 +1,8 @@
+/**
+ * Humans sub-route module
+ * @module app/api/v1/humans
+ */
+
 import logger from "winston";
 import express from "express";
 import {
@@ -5,10 +10,15 @@ import {
   getHumanPets
 } from "./business";
 
-// This is humans sub router
 const humans = new express.Router();
 
-// HTTP GET /api/v1/humans/
+/**
+ * Route that returns all humans
+ * @name ROUTE {GET} /api/v1/humans/
+ * @function
+ * @memberof module:app/api/v1/humans
+ * @inner
+ */
 humans.get("/", (req, res, next) => {
   logger.debug(req.baseUrl);
 
@@ -23,7 +33,14 @@ humans.get("/", (req, res, next) => {
   }
 });
 
-// HTTP GET /api/v1/humans/:name/pets
+/**
+ * Route that returns all humans pets
+ * @name ROUTE {GET} /api/v1/humans/:name/pets
+ * @function
+ * @memberof module:app/api/v1/humans
+ * @inner
+ * @param {string} name - human's name
+ */
 humans.get("/:name/pets", (req, res, next) => {
   logger.debug(req.baseUrl);
 
@@ -40,4 +57,10 @@ humans.get("/:name/pets", (req, res, next) => {
 
 });
 
+/**
+ * This is humans sub router
+ *
+ * @constant
+ * @type {router}
+ */
 module.exports = humans;
